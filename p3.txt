@@ -1,0 +1,24 @@
+p3 - find min of n numbers
+
+declare int n;
+declare int number;
+declare int min;
+
+readFromInput(n);
+
+readFromInput(number);
+min = number;
+
+n = n - 1;
+
+whileCondition (n != 0) do 
+{
+    readFromInput(number);
+    ifTrue (number < min)
+    {
+        min = number;
+    }
+    n = n - 1;
+}
+
+return min;

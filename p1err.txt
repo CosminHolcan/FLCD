@@ -1,0 +1,7 @@
+declare int #a;
+readFromInput(#a);
+ifTrue (#a % 2 == 0)
+{
+    declare text response = "nothing
+}
+return false;
