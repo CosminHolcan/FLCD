@@ -9,10 +9,11 @@ Syntactic rules:
     writeStmt = "writeToOutput" "( id ")"
     type = "int" | char" | "string" | "dual"
     relationalOp = "<" | ">" | "==" | ">=" | "<=" | "!="
+    logicalOp = "and" | "or"
     whileStmt = "whileCondition" "(" checkStmt ")" "do" "{" program "}"
     ifStmt = "ifTrue" "(" checkStmt ")" "{" program "}" [elseStmt]
     elseStmt = "elseDo" "{" program "}"
-    checkStmt = expression relationalOp expression
+    checkStmt = expression relationalOp expression | id | dual | {"("} checkStmt {")"} logicalOp {"("} checkStmt {")"}
     expression = term | expression ("+" | "-" ) term
     term = factor | term ("*" | "/" | "%") factor
     factor = "(" expression ")" | id | int

@@ -16,4 +16,4 @@ whileCondition (b > 0) do
     b = r;
 }
 
-return a;
+writeToOutput(a);

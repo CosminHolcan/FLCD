@@ -21,4 +21,4 @@ whileCondition (n != 0) do
     n = n - 1;
 }
 
-return min;
+writeToOutput(min);

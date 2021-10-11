@@ -5,7 +5,7 @@ readFromInput(a);
 declare int i = 3;
 ifTrue (a == 2)
 {
-    return true;
+    writeToOutput(true);
 }
 ifTrue ((a < 2) or (a % 2 == 0))
 {
@@ -15,9 +15,9 @@ whileCondition (i*i < a) do
 {
     ifTrue (a % i == 0)
     {
-        return false;
+        writeToOytput(false);
     }
     i = i + 2;
 }
 
-return true;
+writeToOutput(true);
