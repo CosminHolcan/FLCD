@@ -11,7 +11,7 @@ class SymbolTable():
         for i in range(bucketsNumber) :
             self.__buckets.append(deque())
 
-    def __hashFunction(self, element: string):
+    def __hashFunction(self, element):
         sum = 0
         for character in element:
             sum = sum + ord(character)
