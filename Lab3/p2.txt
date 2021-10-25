@@ -1,0 +1,19 @@
+//p2 - compute gcd of 2 numbers
+
+declare int a;
+declare int b;
+readFromInput(a);
+readFromInput(b);
+
+declare int q;
+declare int r;
+
+whileCondition (b > 0) do
+{
+    q = a / b;
+    r = a % b;
+    a = b;
+    b = r;
+}
+
+writeToOutput(a);
