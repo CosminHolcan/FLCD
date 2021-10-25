@@ -24,10 +24,9 @@ c. Decimal digits (0-9);
             int = 0 | [+|-] notZeroDigit {digit}
             notZeroDigit = "1" | "2" | ... | "9"
         2.char 
-            char = 'digit' | 'letter'
+            char = "digit" | "letter" | " "
         3.string
-            string = "createString"
-            createString = character{character}
+            string = "{character}"
             character = letter | digit
         4. dual
             dual = true | false

@@ -6,7 +6,7 @@ Syntactic rules:
     simpleDeclStmt = ("declare" type id) | ("declare" type id {, id} )
     componentDeclStmt = "component" id "{" simpleDeclStmt ";" {simpleDeclStmt ;} "}"
     readStmt = "readFromInput" "(" id ")"
-    writeStmt = "writeToOutput" "( id ")"
+    writeStmt = "writeToOutput" "(" (id|dual|int|string|char) ")"
     type = "int" | char" | "string" | "dual"
     relationalOp = "<" | ">" | "==" | ">=" | "<=" | "!="
     logicalOp = "and" | "or"
