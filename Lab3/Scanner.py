@@ -64,6 +64,7 @@ class Scanner:
                         pos = self.__stIdentifiers.pos(currentToken)
                         self.__pif.append(("identifier", pos))
                         continue
-                    print("Error at line " + str(indexLine) + " with token " + currentToken)
+                    print("Error at line " + str(
+                        indexLine) + " with token " + currentToken + " that is not a constant, id or a reserved word, separator or delimiter")
                     return
             self.__writeToFiles()
