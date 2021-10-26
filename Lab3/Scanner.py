@@ -67,4 +67,5 @@ class Scanner:
                     print("Error at line " + str(
                         indexLine) + " with token " + currentToken + " that is not a constant, id or a reserved word, separator or delimiter")
                     return
+            print("Lexically correct")
             self.__writeToFiles()
