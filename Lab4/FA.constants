@@ -1,5 +1,5 @@
 States : p,q,r,s,t,u
 Alphabet : 0..9,a..z, ,A..Z,"
-InitialState : p
+Initial State : p
 Transitions : p,0 -> s; p,+ -> q; p,- -> q; q,1..9 -> r; p,1..9 -> r; r,0..9 -> r; p," -> t; t,a..z -> t; t,A..Z -> t; t,0..9 -> t; t,  -> t; t," -> u
 Final states : r,s,u
