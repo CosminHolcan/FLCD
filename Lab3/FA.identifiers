@@ -1,0 +1,5 @@
+States : p,q
+Alphabet : 0..9,a..z,_,A..Z
+InitialState : p
+Transitions : p,a..z -> q; p,A..Z -> q; q,a..z -> q; q,A..Z -> q; q,_ -> q; q,0..9 -> q
+Final states : q

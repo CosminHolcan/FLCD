@@ -1,3 +1,4 @@
+from FA import FiniteAutomaton
 from SymbolTable import SymbolTable
 from Utils import check_string_start_with_delimiter, check_if_constant, check_if_identifier
 
@@ -12,6 +13,10 @@ class Scanner:
         self.__pif: list = []
         self.__stIdentifiers: SymbolTable = SymbolTable(17)
         self.__stConstants: SymbolTable = SymbolTable(17)
+        self.__finiteAutomatonConstants = FiniteAutomaton()
+        self.__finiteAutomatonConstants.readFromFile("FA.constants")
+        self.__finiteAutomatonIdentifiers = FiniteAutomaton()
+        self.__finiteAutomatonIdentifiers.readFromFile("FA.identifiers")
 
     def __writeToFiles(self):
         with open(self.__stIdentifiersFileName, 'w') as file:
@@ -56,11 +61,11 @@ class Scanner:
                         currentToken = line
                         line = ""
                     currentToken = currentToken.strip(" ")
-                    if check_if_constant(currentToken):
+                    if self.__finiteAutomatonConstants.acceptsSequence(currentToken):
                         pos = self.__stConstants.pos(currentToken)
                         self.__pif.append(("constant", pos))
                         continue
-                    if check_if_identifier(currentToken):
+                    if self.__finiteAutomatonIdentifiers.acceptsSequence(currentToken):
                         pos = self.__stIdentifiers.pos(currentToken)
                         self.__pif.append(("identifier", pos))
                         continue
