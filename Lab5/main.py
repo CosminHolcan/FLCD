@@ -5,3 +5,4 @@ if __name__ == "__main__":
     grammar.readFromFile("g2.txt")
     print("Checked ", grammar.checkCFG())
     print(grammar)
+    print(grammar.getProductionsByNonterminal("Integer"))

@@ -49,7 +49,7 @@ class Grammar:
                     secondChar = result[-1]
                     if nonterminalsLHS not in productions.keys():
                         productions[nonterminalsLHS] = list()
-                    for i in range(ord(firstChar), ord(secondChar)+1):
+                    for i in range(ord(firstChar), ord(secondChar) + 1):
                         productions[nonterminalsLHS].append(chr(i))
                     continue
                 result = result.strip().split(" ")
@@ -79,10 +79,13 @@ class Grammar:
         if nonTerminal not in self.nonterminals:
             print("Not found nonterminal")
             return
-        if nonTerminal not in self.productions.keys():
-            print("Not found productions with nonterminal")
-            return
-        return self.productions[nonTerminal]
+        toReturn = list()
+        for key in self.productions.keys():
+            if nonTerminal in key:
+                toReturn.extend(self.productions[key])
+        if len(toReturn) != 0:
+            return toReturn
+        print("Not found productions with nonterminal " + nonTerminal)
 
     def __str__(self):
         toReturn = "nonterminals : " + ", ".join(self.nonterminals) + "\n"
