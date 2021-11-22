@@ -1,6 +1,7 @@
 Nonterminals : S|A|B
-Alphabet: a|b| |c
+Alphabet: a|b|c
 Starting symbol : S
 Productions :
-S -> a empty_space S | b S | c
-B -> b
+S -> a S b | A b c | c B
+A -> a A | a
+B -> b c B | b
