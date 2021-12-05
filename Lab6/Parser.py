@@ -1,5 +1,7 @@
 from Grammar import Grammar
 import copy
+
+
 class LRParser:
 
     def __init__(self, grammar: Grammar):
@@ -7,13 +9,12 @@ class LRParser:
 
         new_start_symbol = "start"
         self.gramatica_imbogatita.nonterminals.append(new_start_symbol)
-        self.gramatica_imbogatita.productions[new_start_symbol] = [self.gramatica_imbogatita.starting_symbol]
+        self.gramatica_imbogatita.productions[new_start_symbol] = [[self.gramatica_imbogatita.starting_symbol]]
         self.initial_starting_symbol = grammar.starting_symbol
         self.gramatica_imbogatita.starting_symbol = new_start_symbol
 
         self.states = []
         self.table = {}
-
 
     def closure(self, I):
         C = copy.deepcopy(I)
@@ -25,7 +26,8 @@ class LRParser:
                 result = elem[1]
                 if '.' in result:
                     index_punct = result.index('.')
-                    if index_punct + 1 < len(result) and result[index_punct + 1] in self.gramatica_imbogatita.nonterminals:
+                    if index_punct + 1 < len(result) and result[
+                        index_punct + 1] in self.gramatica_imbogatita.nonterminals:
                         productions_B = self.gramatica_imbogatita.getProductionsByNonterminal(result[index_punct + 1])
                         for production in productions_B:
                             new_elem = [result[index_punct + 1]]
@@ -36,7 +38,6 @@ class LRParser:
                                 C.append(new_elem)
                                 changed = True
         return C
-
 
     def goto(self, s, X):
         copy_s = copy.deepcopy(s)
@@ -56,7 +57,7 @@ class LRParser:
 
     def ColCan(self):
         self.states = []
-        self.table = {}
+        self.table = [{}]
         s_0 = self.closure([[self.gramatica_imbogatita.starting_symbol, [".", self.initial_starting_symbol]]])
         self.states.append(s_0)
         C = [s_0]
@@ -66,12 +67,17 @@ class LRParser:
             for any_state in C:
                 for any_symbol in self.gramatica_imbogatita.nonterminals + self.gramatica_imbogatita.alphabet:
                     new_state = self.goto(any_state, any_symbol)
-                    if new_state and new_state not in C:
-                        index = C.index(any_state)
-                        self.states.append(new_state)
-                        self.table[len(self.states) - 1] = {}
-                        self.table[len(self.states) - 1][any_symbol] = index
-                        C.append(new_state)
-                        C_changed = True
+                    if new_state:
+                        if new_state not in C:
+                            index = C.index(any_state)
+                            self.table.append({})
+                            self.states.append(new_state)
+                            self.table[index][any_symbol] = len(self.states) - 1
+                            C.append(new_state)
+                            C_changed = True
+                        else :
+                            index = C.index(any_state)
+                            index_already_existent_state = C.index(new_state)
+                            self.table[index][any_symbol] = index_already_existent_state
 
         return C  # = self.states
