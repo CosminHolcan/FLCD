@@ -42,7 +42,6 @@ class LRParser:
     def goto(self, s, X):
         copy_s = copy.deepcopy(s)
         productions_found = []
-        # for production   in copy_s:
         for production in copy_s:
             rhs = production[1]
             if "." in rhs:

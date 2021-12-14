@@ -17,7 +17,7 @@ if __name__ == "__main__":
     for production_id in phi:
         productions.append(lrp.gramatica_imbogatita.getProductionIndex(production_id))
     print(po.parseProductions(productions))
-    with open("table.txt", 'w') as file:
+    with open("out1.txt", 'w') as file:
         file.write(str(po.parseProductions(productions)))
     file.close()
     # po.IsAccepted(["a", "a"])

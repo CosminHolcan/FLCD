@@ -1,47 +1,7 @@
 import copy
 
 from Node import Node
-
-
-class Row:
-    def __init__(self, info, parent, rightSibling):
-        self.info = info
-        self.parent = parent
-        self.rightSibling = rightSibling
-
-    def __str__(self):
-        return self.format(str(self.info), 15) + self.format(str(self.parent), 9) + \
-               self.format(str(self.rightSibling), 8)
-
-    def format(self, text, nrChars):
-        while len(text) != nrChars:
-            text += " "
-        return text
-
-
-class Table:
-    def __init__(self):
-        self.rows = []
-
-    def add(self, row):
-        self.rows.append(row)
-
-    def getIndexOfInfo(self, symbol):
-        # [::-1] face reverse de lista, cautam de la coata la inceput ca sa gasim ultima aparitie.
-        for row_index in range(len(self.rows))[::-1]:
-            if self.rows[row_index].info == symbol:
-                return row_index
-
-    def format(self, text, nrChars):
-        while len(text) != nrChars:
-            text += " "
-        return text
-
-    def __str__(self):
-        result = "Index   Info           Parent   RightSibling\n"
-        for row_index in range(len(self.rows)):
-            result += self.format(str(row_index), 8) + str(self.rows[row_index]) + "\n"
-        return result
+from Table import Table
 
 
 class ParserOutput:
@@ -112,23 +72,22 @@ class ParserOutput:
         # terms = []
         table = Table()
         print(productions)
-        table.add(Row(productions[0][0][0], -1, -1))
+        table.add(Node(productions[0][0][0], -1, -1))
         # first iteration
         for child_index in range(len(productions[0][1])):
             if child_index == 0:
-                table.add(Row(productions[0][1][child_index], 0, -1))
+                table.add(Node(productions[0][1][child_index], 0, -1))
             else:
                 table.add(
-                    Row(productions[0][1][child_index], 0, table.getIndexOfInfo(productions[0][1][child_index - 1])))
+                    Node(productions[0][1][child_index], 0, table.getIndexOfInfo(productions[0][1][child_index - 1])))
 
         for production in productions[1:]:
             current = production[0][0]
             children = production[1]
             parentIndex = table.getIndexOfInfo(current)
-            pos = 0
             for child_index in range(len(children)):
                 if child_index == 0:
-                    table.add(Row(children[0], parentIndex, -1))
+                    table.add(Node(children[0], parentIndex, -1))
                 else:
-                    table.add(Row(children[child_index], parentIndex, table.getIndexOfInfo(children[child_index - 1])))
+                    table.add(Node(children[child_index], parentIndex, table.getIndexOfInfo(children[child_index - 1])))
         return table
