@@ -1,6 +1,6 @@
 Nonterminals : S|A
-Alphabet: a|b|c
+Alphabet: a|b|c|d
 Starting symbol : S
 Productions :
-S -> a A
-A -> b A | c
+S -> a A d
+A -> b A | c | e

@@ -105,17 +105,24 @@ class LRParser:
         return False
 
     def determineAction(self, state):
-        for production in state:
-            if self.isProductionShift(production):
-                return "shift"
-
+        toReturn = []
         for production in state:
             result = self.isProductionReduce(production)
             if result != None:
-                return result
+                toReturn.append(result)
+
+        for production in state:
+            if self.isProductionShift(production):
+                result = self.isProductionReduce(production)
+                if result != None:
+                    raise "error"
+                toReturn.append("shift")
+
 
         for production in state:
             if self.isProductionAccept(production):
-                return "acc"
+                toReturn.append("acc")
 
+        print("toReturn ", toReturn)
+        return toReturn[-1]
         return 'error'

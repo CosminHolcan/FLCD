@@ -50,7 +50,8 @@ class Grammar:
                     if nonterminalsLHS not in productions.keys():
                         productions[nonterminalsLHS] = list()
                     for i in range(ord(firstChar), ord(secondChar) + 1):
-                        productions[nonterminalsLHS].append(chr(i))
+                        productions[nonterminalsLHS].append([chr(i)])
+                        # productions.append((nonterminalsLHS,), [chr(i)])
                     continue
                 result = result.strip().split(" ")
                 for index in range(len(result)):

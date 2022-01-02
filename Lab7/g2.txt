@@ -1,11 +1,11 @@
 Nonterminals : Program|StatementsList|SimplStatement|ConditionStatement|IfStatement|WhileStatement|AssignStatement|DeclStatement|ReadStatement|WriteStatement|CheckStatement|Expression|RelationalOp|Id|Dual|LogicalOp|Term|Factor|Integer|SimpleDeclStatement|ComponentDeclStatement|ListIds|Type|ListSimpleDeclStatement|String|Char|Letter|ListChars|Character|Number|NotZeroDigit|ListDigits|Digit
-Alphabet: = | + | * | - | / | % | < | <= | == | >= | > | != | and | or | | ( | ) | { | } | , | ; | declare | readFromInput | writeToOutput | int | char | string | dual | component | ifTrue | elseDo | whileCondition | do | return | true | false | a..z | A..Z | 0..9 | _ | "
+Alphabet: = | + | * | - | / | % | < | <= | == | >= | > | != | and | or | | ( | ) | { | } | , | ; | declare | readFromInput | writeToOutput | int | char | string | dual | component | ifTrue | elseDo | whileCondition | do | return | true | false | a..z | A..Z | 0..9 | _ | " | identifier | constant
 Starting symbol : Program
 Productions :
 Program -> StatementsList
-StatementsList -> SimplStatement ; | ConditionStatement | SimplStatement ; StatementsList | ConditionStatement StatementsList
+StatementsList -> SimplStatement ; StatementsList | ConditionStatement | ConditionStatement StatementsList | SimplStatement ;
 ConditionStatement -> IfStatement | WhileStatement
-SimplStatement -> AssignStatement | DeclStatement | ReadStatement | WriteStatement
+SimplStatement -> DeclStatement | ReadStatement | WriteStatement
 IfStatement -> ifTrue ( CheckStatement ) { StatementsList } | ifTrue ( CheckStatement ) { StatementsList } elseDo { StatementsList }
 WhileStatement -> whileCondition ( CheckStatement ) { StatementsList }
 DeclStatement -> SimpleDeclStatement | ComponentDeclStatement
@@ -14,7 +14,7 @@ ComponentDeclStatement -> component Id { ListSimpleDeclStatement }
 ReadStatement -> readFromInput ( Id )
 WriteStatement -> writeToOutput ( Id ) | writeToOutput ( Dual ) |writeToOutput ( Integer )| writeToOutput ( String ) | writeToOutput ( Char )
 ListSimpleDeclStatement -> SimpleDeclStatement ; | SimpleDeclStatement ; ListSimpleDeclStatement
-ListIds -> Id , ListIds | Id
+ListIds -> identifier , ListIds | identifier
 Type -> int | char | string | dual
 CheckStatement -> Expression RelationalOp Expression | Id | Dual | ( CheckStatement ) LogicalOp ( CheckStatement )
 RelationalOp -> < | <= | == | >= | > | !=
