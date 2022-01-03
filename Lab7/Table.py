@@ -16,7 +16,7 @@ class Table:
         return text
 
     def __str__(self):
-        result = "Index   Info           Parent   RightSibling\n"
+        result = "Index   Info                     Parent      RightSibling\n"
         for node_index in range(len(self.nodes)):
             result += self.format(str(node_index), 8) + str(self.nodes[node_index]) + "\n"
         return result

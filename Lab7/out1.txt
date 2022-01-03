@@ -6,4 +6,4 @@ Index   Info           Parent   RightSibling
 4       A              2        3       
 5       b              4        -1      
 6       A              4        5       
-7       c              6        -1      
+7       c              6        -1     

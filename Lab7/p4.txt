@@ -1,0 +1,3 @@
+declare int a;
+readFromInput(a);
+a = 5;;

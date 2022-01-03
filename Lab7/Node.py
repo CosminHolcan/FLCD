@@ -5,10 +5,10 @@ class Node:
         self.rightSibling = rightSibling
 
     def __str__(self):
-        return self.format(str(self.info), 15) + self.format(str(self.parent), 9) + \
-               self.format(str(self.rightSibling), 8)
+        return self.format(str(self.info), 25) + self.format(str(self.parent), 10) + \
+               self.format(str(self.rightSibling), 15)
 
     def format(self, text, nrChars):
-        while len(text) != nrChars:
+        while len(text) <= nrChars:
             text += " "
         return text

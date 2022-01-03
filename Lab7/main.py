@@ -14,7 +14,7 @@ def readPIF(pifFile):
 if __name__ == "__main__":
     grammar = Grammar()
     grammar.readFromFile("g2.txt")
-    pif = readPIF("pif1.txt")
+    pif = readPIF("pif.out")
     lrp = LRParser(grammar)
     # print(lrp.ColCan())
     # print(grammar.productionsAsList())
@@ -22,13 +22,11 @@ if __name__ == "__main__":
     #     print(e)
     # print(lrp.gramatica_imbogatita.getProductionIndex(0))
     po = ParserOutput(lrp)
-    # phi = po.IsAccepted(["declare", "int", "identifier", ";", "declare", "int", "identifier", ";"])
     phi = po.IsAccepted(pif)
     productions = []
     for production_id in phi:
         productions.append(lrp.gramatica_imbogatita.getProductionIndex(production_id))
-    # print(po.parseProductions(productions))
-    # with open("out1.txt", 'w') as file:
-    #     file.write(str(po.parseProductions(productions)))
-    # file.close()
+    with open("out1.txt", 'w') as file:
+        file.write(str(po.parseProductions(productions)))
+    file.close()
     # po.IsAccepted(["a", "a"])

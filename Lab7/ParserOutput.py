@@ -59,7 +59,7 @@ class ParserOutput:
                 action = self.parser.table[s_m]["action"]
                 if action == "shift":
                     self.ActionShift([alpha, beta, phi])
-                elif action == "acc":
+                elif action == "acc" and beta==[]:
                     print("Great success")
                     return phi
                 else:
@@ -71,7 +71,6 @@ class ParserOutput:
     def parseProductions(self, productions):
         # terms = []
         table = Table()
-        print(productions)
         table.add(Node(productions[0][0][0], -1, -1))
         # first iteration
         for child_index in range(len(productions[0][1])):
